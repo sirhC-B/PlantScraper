@@ -5,6 +5,7 @@ import requests
 import user_agents
 import time
 import random
+import mail
 
 
 def random_headers():
@@ -61,7 +62,10 @@ if __name__ == "__main__":
             if web_dict[url][1] in div.text:
                 print(request.host + ": KEINE Thai-Constellation verfuegbar.")
                 # print(request.headers)
-            else : print(web_dict[url][2] + ": TREFFER!")
+            else :
+                print(web_dict[url][2] + ": TREFFER!")
+                mail.sending_mail("vladyslava.seher@outlook.de",
+                                      f"{request.host} hat den Lieferstatus der Thai-Constellation.\nDu kannst sie unter folgendem Link bestellen: {url}.\n\n\nEmpfehlen sie den Plantscraper gern ihren Freunden und der Familie weiter.")
             #time.sleep(.5)
         except URLError as e:
             print(f"{request.host}: {e}.")
