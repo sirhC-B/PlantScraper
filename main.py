@@ -1,9 +1,9 @@
+import datetime
 import urllib.request
 from bs4 import BeautifulSoup as BS
 from urllib.error import URLError
-import requests
 import user_agents
-import time
+import datetime
 import random
 import mail
 
@@ -67,6 +67,10 @@ if __name__ == "__main__":
                 mail.sending_mail("vladyslava.seher@outlook.de",
                                       f"{request.host} hat den Lieferstatus der Thai-Constellation.\nDu kannst sie unter folgendem Link bestellen: {url}.\n\n\nEmpfehlen sie den Plantscraper gern ihren Freunden und der Familie weiter.")
             #time.sleep(.5)
+
         except URLError as e:
             print(f"{request.host}: {e}.")
 
+    f = open("log.txt", "a")
+    f.write(str(datetime.datetime.now()) + "\n")
+    f.close()
